@@ -56,7 +56,7 @@ int main(int argc, char** argv, char** env) {
 
         toByte(encoded_word, codeword, d + p + 1);
 
-        printf("[DUT] input  = %llx\n", word);
+        printf("[DUT] input  = %lx\n", word);
         // Apply Input Data
         for (int i = 0; i < cw_byte; i++) {
             dut->data_i[i] = *((unsigned int *) encoded_word + i);
