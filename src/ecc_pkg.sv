@@ -16,10 +16,10 @@ package ecc_pkg;
 
   // Calculate required ECC parity width:
   function automatic int unsigned get_parity_width (int unsigned data_width);
-    // data_width + cw_width + 1 <= 2**cw_width
-    int unsigned cw_width = 2;
-    while (unsigned'(2**cw_width) < cw_width + data_width + 1) cw_width++;
-    return cw_width;
+    // data_width + parity_width + 1 <= 2**parity_width
+    int unsigned parity_width = 2;
+    while (unsigned'(2**parity_width) < parity_width + data_width + 1) parity_width++;
+    return parity_width;
   endfunction
 
   // Calculate required ECC codeword width:
