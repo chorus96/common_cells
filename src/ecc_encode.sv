@@ -57,7 +57,7 @@ module ecc_encode
   end
 
   // calculate code word
-  always_comb begin : calculate_syndrome
+  always_comb begin : calculate_syndrome // syndrome(어떤 이상 상태를 알려주는 신호나 패턴)
     parity_code_word = 0;
     for (int unsigned i = 0; i < unsigned'($bits(parity_t)); i++) begin
       for (int unsigned j = 1; j < unsigned'($bits(code_word_t)) + 1; j++) begin
