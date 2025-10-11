@@ -119,7 +119,7 @@ module mem_to_banks_detailed #(
   logic                 dead_write_fifo_full,
                         dead_write_fifo_empty;
 
-  function automatic addr_t align_addr(input addr_t addr);
+  function automatic addr_t align_addr(addr_t addr);
     return (addr >> $clog2(DataBytes)) << $clog2(DataBytes);
   endfunction
 

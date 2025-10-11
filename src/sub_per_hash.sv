@@ -94,7 +94,7 @@ module sub_per_hash #(
   // c: increment
   // m: range
   // Shuffling is a variation of the Fisher-Yates shuffle algorithm
-  function automatic perm_lists_t get_permutations(input int unsigned seed);
+  function automatic perm_lists_t get_permutations(int unsigned seed);
     perm_lists_t indices;
     perm_lists_t perm_array;
     longint unsigned A = 2147483629;
@@ -139,7 +139,7 @@ module sub_per_hash #(
   // a: large prime
   // c: increment
   // m: range
-  function automatic xor_stages_t get_xor_stages(input int unsigned seed);
+  function automatic xor_stages_t get_xor_stages(int unsigned seed);
     xor_stages_t xor_array;
     longint unsigned A = 1664525;
     longint unsigned C = 1013904223;
