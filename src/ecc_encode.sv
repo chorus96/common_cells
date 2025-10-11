@@ -19,7 +19,9 @@
 ///
 /// [1] https://en.wikipedia.org/wiki/Hamming_code
 
-module ecc_encode import ecc_pkg::*; #(
+module ecc_encode 
+  import ecc_pkg::*; 
+#(
   /// Data width of unencoded word.
   parameter  int unsigned DataWidth   = 64,
   // Do not change
