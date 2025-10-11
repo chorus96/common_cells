@@ -11,6 +11,8 @@
 #include <assert.h>
 #include <math.h>
 
+#define MAX_SIM_TIME 0 // 1 // 10 // 100000
+
 // This is a 64-bit integer to reduce wrap over issues and
 // allow modulus.  You can also use a double, if you wish.
 vluint64_t main_time = 0;
@@ -103,7 +105,7 @@ int main(int argc, char** argv, char** env) {
 
         tfp->dump(main_time);
 
-        if (main_time > 100000) break;
+        if (main_time > MAX_SIM_TIME) break;
     }
     dut->final();
     tfp->close();
