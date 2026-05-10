@@ -1,6 +1,7 @@
 .*
 !.travis.yml
 !.git*
+!*.md
 *.out
 *~
 /Bender.lock
