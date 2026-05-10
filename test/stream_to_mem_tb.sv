@@ -33,6 +33,9 @@ module stream_to_mem_tb #(
   // check FIFO
   payload_t data_fifo[$];
 
+  // Reflect FIFO for proc_mem_reflect (module-level for Verilator fork-join_none lifetime)
+  payload_t reflect_fifo[$];
+
   // Generate Stream data
   initial begin : proc_stream_master
     automatic payload_t    test_data;
@@ -84,7 +87,6 @@ module stream_to_mem_tb #(
 
   // reflect the payload exactly `BufDepth` Cycles later, standin for memory
   initial begin : proc_mem_reflect
-    automatic payload_t reflect_fifo[$];
     @(posedge rst_n);
     mem_req_ready  = '0;
     mem_resp       = '0;
@@ -98,7 +100,11 @@ module stream_to_mem_tb #(
         fork
           begin
             if (BufDepth) begin
+              `ifndef VERILATOR
               repeat (BufDepth) @(posedge clk);
+              `else
+              #(BufDepth * CyclTime);
+              `endif
               #ApplTime;
             end
             mem_resp       = reflect_fifo.pop_front();
