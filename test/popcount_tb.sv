@@ -83,7 +83,11 @@ module popcount_tb;
      data_w1 = 0;
      for(int i = 0; i<100; i++)
        begin
+         `ifndef VERILATOR
          `SV_RAND_CHECK(randomize(data_w1));
+         `else
+         data_w1 = $urandom();
+         `endif
          #5ns;
          assert(popcount_w1 == $countones(data_w1)) else $error("Popcount of %b was %d but should be %d.", data_w1, popcount_w1, $countones(data_w1));
        end
@@ -101,7 +105,11 @@ module popcount_tb;
 
      for(int i = 0; i<100; i++)
        begin
+         `ifndef VERILATOR
          `SV_RAND_CHECK(randomize(data_w5));
+         `else
+         data_w5 = $urandom();
+         `endif
          #5ns;
          assert(popcount_w5 == $countones(data_w5)) else $error("Popcount of %b was %d but should be %d.", data_w5, popcount_w5, $countones(data_w5));
        end
@@ -118,7 +126,11 @@ module popcount_tb;
      assert(popcount_w16 == $countones(data_w16)) else $error("Popcount of %b was %d but should be %d.", data_w16, popcount_w16, $countones(data_w16));
      for(int i = 0; i<100; i++)
        begin
+         `ifndef VERILATOR
          `SV_RAND_CHECK(randomize(data_w16));
+         `else
+         data_w16 = $urandom();
+         `endif
          #5ns;
          assert(popcount_w16 == $countones(data_w16)) else $error("Popcount of %b was %d but should be %d.", data_w16, popcount_w16, $countones(data_w16));
        end
@@ -135,7 +147,11 @@ module popcount_tb;
      assert(popcount_w32 == $countones(data_w32)) else $error("Popcount of %b was %d but should be %d.", data_w32, popcount_w32, $countones(data_w32));
      for(int i = 0; i<100; i++)
        begin
+         `ifndef VERILATOR
          `SV_RAND_CHECK(randomize(data_w32));
+         `else
+         data_w32 = $urandom();
+         `endif
          #5ns;
          assert(popcount_w32 == $countones(data_w32)) else $error("Popcount of %b was %d but should be %d.", data_w32, popcount_w32, $countones(data_w32));
        end
@@ -152,7 +168,11 @@ module popcount_tb;
      assert(popcount_w64 == $countones(data_w64)) else $error("Popcount of %b was %d but should be %d.", data_w64, popcount_w64, $countones(data_w64));
      for(int i = 0; i<100; i++)
        begin
+         `ifndef VERILATOR
          `SV_RAND_CHECK(randomize(data_w64));
+         `else
+         {data_w64[63:32], data_w64[31:0]} = {$urandom(), $urandom()};
+         `endif
          #5ns;
          assert(popcount_w64 == $countones(data_w64)) else $error("Popcount of %b was %d but should be %d.", data_w64, popcount_w64, $countones(data_w64));
        end
@@ -169,7 +189,12 @@ module popcount_tb;
      assert(popcount_w981 == $countones(data_w981)) else $error("Popcount of %b was %d but should be %d.", data_w981, popcount_w981, $countones(data_w981));
      for(int i = 0; i<100; i++)
        begin
+         `ifndef VERILATOR
          `SV_RAND_CHECK(randomize(data_w981));
+         `else
+         for (int j = 0; j < 31; j++) data_w981[j*32 +: 32] = $urandom();
+         data_w981[980:960] = $urandom();
+         `endif
          #5ns;
          assert(popcount_w981 == $countones(data_w981)) else $error("Popcount of %b was %d but should be %d.", data_w981, popcount_w981, $countones(data_w981));
        end
