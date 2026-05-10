@@ -12,3 +12,4 @@ formal/fall_through_register
 *.check
 *.vcd
 obj_dir/
+sim_build_verilator/
