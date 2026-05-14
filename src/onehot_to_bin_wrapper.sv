@@ -23,7 +23,8 @@ input  logic [ONEHOT_WIDTH-1:0] onehot,
     .ONEHOT_WIDTH ( ONEHOT_WIDTH ),
     .BIN_WIDTH ( BIN_WIDTH )
   ) i_onehot_to_bin (
-    .*
+    .onehot ( onehot ),
+    .bin ( bin )
   );
 
 endmodule

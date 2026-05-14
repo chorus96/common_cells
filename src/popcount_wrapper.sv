@@ -21,7 +21,8 @@ input  logic [  INPUT_WIDTH-1:0] data_i,
   popcount #(
     .INPUT_WIDTH ( INPUT_WIDTH )
   ) i_popcount (
-    .*
+    .data_i ( data_i ),
+    .popcount_o ( popcount_o )
   );
 
 endmodule

@@ -28,7 +28,11 @@ input  logic                 inp_valid_i,
     .N_OUP ( N_OUP ),
     .LOG_N_OUP ( LOG_N_OUP )
   ) i_stream_demux (
-    .*
+    .inp_valid_i ( inp_valid_i ),
+    .inp_ready_o ( inp_ready_o ),
+    .oup_sel_i ( oup_sel_i ),
+    .oup_valid_o ( oup_valid_o ),
+    .oup_ready_i ( oup_ready_i )
   );
 
 endmodule

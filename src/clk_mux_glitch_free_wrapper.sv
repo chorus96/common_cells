@@ -31,7 +31,12 @@ input logic [NUM_INPUTS-1:0] clks_i,
     .NUM_SYNC_STAGES ( NUM_SYNC_STAGES ),
     .CLOCK_DURING_RESET ( CLOCK_DURING_RESET )
   ) i_clk_mux_glitch_free (
-    .*
+    .clks_i ( clks_i ),
+    .test_clk_i ( test_clk_i ),
+    .test_en_i ( test_en_i ),
+    .async_rstn_i ( async_rstn_i ),
+    .async_sel_i ( async_sel_i ),
+    .clk_o ( clk_o )
   );
 
 endmodule

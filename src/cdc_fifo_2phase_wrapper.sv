@@ -32,7 +32,16 @@ input  logic src_rst_ni,
     .T ( T ),
     .LOG_DEPTH ( LOG_DEPTH )
   ) i_cdc_fifo_2phase (
-    .*
+    .src_rst_ni ( src_rst_ni ),
+    .src_clk_i ( src_clk_i ),
+    .src_data_i ( src_data_i ),
+    .src_valid_i ( src_valid_i ),
+    .src_ready_o ( src_ready_o ),
+    .dst_rst_ni ( dst_rst_ni ),
+    .dst_clk_i ( dst_clk_i ),
+    .dst_data_o ( dst_data_o ),
+    .dst_valid_o ( dst_valid_o ),
+    .dst_ready_i ( dst_ready_i )
   );
 
 endmodule

@@ -32,7 +32,14 @@ input  logic              clk_i,
     .N_INP ( N_INP ),
     .ARBITER ( ARBITER )
   ) i_stream_arbiter (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .inp_data_i ( inp_data_i ),
+    .inp_valid_i ( inp_valid_i ),
+    .inp_ready_o ( inp_ready_o ),
+    .oup_data_o ( oup_data_o ),
+    .oup_valid_o ( oup_valid_o ),
+    .oup_ready_i ( oup_ready_i )
   );
 
 endmodule

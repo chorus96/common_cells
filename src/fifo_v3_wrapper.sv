@@ -41,7 +41,17 @@ input  logic  clk_i,
     .dtype ( dtype ),
     .ADDR_DEPTH ( ADDR_DEPTH )
   ) i_fifo_v3 (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .flush_i ( flush_i ),
+    .testmode_i ( testmode_i ),
+    .full_o ( full_o ),
+    .empty_o ( empty_o ),
+    .usage_o ( usage_o ),
+    .data_i ( data_i ),
+    .push_i ( push_i ),
+    .data_o ( data_o ),
+    .pop_i ( pop_i )
   );
 
 endmodule

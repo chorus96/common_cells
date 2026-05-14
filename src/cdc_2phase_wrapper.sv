@@ -29,7 +29,16 @@ input  logic src_rst_ni,
   cdc_2phase #(
     .T ( T )
   ) i_cdc_2phase (
-    .*
+    .src_rst_ni ( src_rst_ni ),
+    .src_clk_i ( src_clk_i ),
+    .src_data_i ( src_data_i ),
+    .src_valid_i ( src_valid_i ),
+    .src_ready_o ( src_ready_o ),
+    .dst_rst_ni ( dst_rst_ni ),
+    .dst_clk_i ( dst_clk_i ),
+    .dst_data_o ( dst_data_o ),
+    .dst_valid_o ( dst_valid_o ),
+    .dst_ready_i ( dst_ready_i )
   );
 
 endmodule

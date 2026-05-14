@@ -29,7 +29,9 @@ input  logic [InpWidth-1:0]     data_i,
     .PermuteKey ( PermuteKey ),
     .XorKey ( XorKey )
   ) i_sub_per_hash (
-    .*
+    .data_i ( data_i ),
+    .hash_o ( hash_o ),
+    .hash_onehot_o ( hash_onehot_o )
   );
 
 endmodule

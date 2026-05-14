@@ -48,7 +48,20 @@ input  logic src_rst_ni,
     .SYNC_STAGES ( SYNC_STAGES ),
     .CLEAR_ON_ASYNC_RESET ( CLEAR_ON_ASYNC_RESET )
   ) i_cdc_fifo_gray_clearable (
-    .*
+    .src_rst_ni ( src_rst_ni ),
+    .src_clk_i ( src_clk_i ),
+    .src_clear_i ( src_clear_i ),
+    .src_clear_pending_o ( src_clear_pending_o ),
+    .src_data_i ( src_data_i ),
+    .src_valid_i ( src_valid_i ),
+    .src_ready_o ( src_ready_o ),
+    .dst_rst_ni ( dst_rst_ni ),
+    .dst_clk_i ( dst_clk_i ),
+    .dst_clear_i ( dst_clear_i ),
+    .dst_clear_pending_o ( dst_clear_pending_o ),
+    .dst_data_o ( dst_data_o ),
+    .dst_valid_o ( dst_valid_o ),
+    .dst_ready_i ( dst_ready_i )
   );
 
 endmodule

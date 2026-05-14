@@ -27,7 +27,12 @@ input  logic clk_i,
     .Depth ( Depth ),
     .dtype ( dtype )
   ) i_shift_reg_gated (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .valid_i ( valid_i ),
+    .data_i ( data_i ),
+    .valid_o ( valid_o ),
+    .data_o ( data_o )
   );
 
 endmodule

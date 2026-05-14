@@ -34,7 +34,14 @@ input  logic     clk_i,
     .payload_t ( payload_t ),
     .Seed ( Seed )
   ) i_stream_delay (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .payload_i ( payload_i ),
+    .ready_o ( ready_o ),
+    .valid_i ( valid_i ),
+    .payload_o ( payload_o ),
+    .ready_i ( ready_i ),
+    .valid_o ( valid_o )
   );
 
 endmodule

@@ -40,7 +40,16 @@ input  logic src_clk_i,
     .T ( T ),
     .Bypass ( Bypass )
   ) i_isochronous_spill_register (
-    .*
+    .src_clk_i ( src_clk_i ),
+    .src_rst_ni ( src_rst_ni ),
+    .src_valid_i ( src_valid_i ),
+    .src_ready_o ( src_ready_o ),
+    .src_data_i ( src_data_i ),
+    .dst_clk_i ( dst_clk_i ),
+    .dst_rst_ni ( dst_rst_ni ),
+    .dst_valid_o ( dst_valid_o ),
+    .dst_ready_i ( dst_ready_i ),
+    .dst_data_o ( dst_data_o )
   );
 
 endmodule

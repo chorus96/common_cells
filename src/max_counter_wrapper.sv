@@ -31,7 +31,19 @@ input  logic             clk_i,
   max_counter #(
     .WIDTH ( WIDTH )
   ) i_max_counter (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .clear_i ( clear_i ),
+    .clear_max_i ( clear_max_i ),
+    .en_i ( en_i ),
+    .load_i ( load_i ),
+    .down_i ( down_i ),
+    .delta_i ( delta_i ),
+    .d_i ( d_i ),
+    .q_o ( q_o ),
+    .max_o ( max_o ),
+    .overflow_o ( overflow_o ),
+    .overflow_max_o ( overflow_max_o )
   );
 
 endmodule

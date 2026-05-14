@@ -24,7 +24,10 @@ input  logic clk_i,
     .dtype ( dtype ),
     .Depth ( Depth )
   ) i_shift_reg (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .d_i ( d_i ),
+    .d_o ( d_o )
   );
 
 endmodule

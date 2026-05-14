@@ -133,6 +133,22 @@ def extract_module_header(text: str, expected_module: str) -> tuple[str, str, st
     return expected_module, preamble, params, ports, param_names
 
 
+def extract_port_names(ports: str) -> list[str]:
+    names: list[str] = []
+    for item in split_top_level_commas(ports):
+        s = remove_leading_attrs(item)
+        if not s:
+            continue
+        tokens = re.findall(r"[A-Za-z_$][\w$]*", s)
+        if not tokens:
+            continue
+        for tok in reversed(tokens):
+            if tok not in {"input", "output", "inout", "ref", "wire", "logic", "reg", "signed", "unsigned", "var"}:
+                names.append(tok)
+                break
+    return names
+
+
 def render_wrapper(module: str, preamble: str, params: str, ports: str, param_names: list[str], source_name: str) -> str:
     wrapper = f"{module}_wrapper"
     lines = [
@@ -168,6 +184,7 @@ def render_wrapper(module: str, preamble: str, params: str, ports: str, param_na
     lines.extend(line.rstrip() for line in ports.splitlines())
     lines.append(");")
     lines.append("")
+    port_names = extract_port_names(ports)
     if param_names:
         lines.append(f"  {module} #(")
         for idx, name in enumerate(param_names):
@@ -176,7 +193,9 @@ def render_wrapper(module: str, preamble: str, params: str, ports: str, param_na
         lines.append(f"  ) i_{module} (")
     else:
         lines.append(f"  {module} i_{module} (")
-    lines.append("    .*")
+    for idx, name in enumerate(port_names):
+        comma = "," if idx + 1 < len(port_names) else ""
+        lines.append(f"    .{name} ( {name} ){comma}")
     lines.append("  );")
     lines.append("")
     lines.append("endmodule")

@@ -23,7 +23,11 @@ input  logic clk_i,
   serial_deglitch #(
     .SIZE ( SIZE )
   ) i_serial_deglitch (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .en_i ( en_i ),
+    .d_i ( d_i ),
+    .q_o ( q_o )
   );
 
 endmodule

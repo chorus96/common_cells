@@ -35,7 +35,8 @@ input  data_t         data_i,
     .code_word_t ( code_word_t ),
     .encoded_data_t ( encoded_data_t )
   ) i_ecc_encode (
-    .*
+    .data_i ( data_i ),
+    .data_o ( data_o )
   );
 
 endmodule

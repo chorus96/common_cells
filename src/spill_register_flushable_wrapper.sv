@@ -29,7 +29,15 @@ input  logic clk_i   ,
     .T ( T ),
     .Bypass ( Bypass )
   ) i_spill_register_flushable (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .valid_i ( valid_i ),
+    .flush_i ( flush_i ),
+    .ready_o ( ready_o ),
+    .data_i ( data_i ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i ),
+    .data_o ( data_o )
   );
 
 endmodule

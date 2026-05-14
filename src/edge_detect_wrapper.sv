@@ -19,7 +19,11 @@ input  logic clk_i,
 );
 
   edge_detect i_edge_detect (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .d_i ( d_i ),
+    .re_o ( re_o ),
+    .fe_o ( fe_o )
   );
 
 endmodule

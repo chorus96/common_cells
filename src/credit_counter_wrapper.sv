@@ -38,7 +38,15 @@ input  logic clk_i,
     .InitNumCredits ( InitNumCredits ),
     .credit_cnt_t ( credit_cnt_t )
   ) i_credit_counter (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .credit_o ( credit_o ),
+    .credit_give_i ( credit_give_i ),
+    .credit_take_i ( credit_take_i ),
+    .credit_init_i ( credit_init_i ),
+    .credit_left_o ( credit_left_o ),
+    .credit_crit_o ( credit_crit_o ),
+    .credit_full_o ( credit_full_o )
   );
 
 endmodule

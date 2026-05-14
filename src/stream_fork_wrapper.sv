@@ -24,7 +24,12 @@ input  logic                clk_i,
   stream_fork #(
     .N_OUP ( N_OUP )
   ) i_stream_fork (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .valid_i ( valid_i ),
+    .ready_o ( ready_o ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i )
   );
 
 endmodule
