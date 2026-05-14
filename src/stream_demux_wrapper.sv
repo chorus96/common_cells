@@ -12,14 +12,11 @@
 // AMD Vivado IP packager wrapper for `stream_demux` from `stream_demux.sv`.
 module stream_demux_wrapper #(
 parameter int unsigned N_OUP     = 32'd1,
-
   parameter int unsigned LOG_N_OUP = (N_OUP > 32'd1) ? unsigned'($clog2(N_OUP)) : 1'b1
 ) (
 input  logic                 inp_valid_i,
   output logic                 inp_ready_o,
-
   input  logic [LOG_N_OUP-1:0] oup_sel_i,
-
   output logic [N_OUP-1:0]     oup_valid_o,
   input  logic [N_OUP-1:0]     oup_ready_i
 );
@@ -28,7 +25,11 @@ input  logic                 inp_valid_i,
     .N_OUP ( N_OUP ),
     .LOG_N_OUP ( LOG_N_OUP )
   ) i_stream_demux (
-    .*
+    .inp_valid_i ( inp_valid_i ),
+    .inp_ready_o ( inp_ready_o ),
+    .oup_sel_i ( oup_sel_i ),
+    .oup_valid_o ( oup_valid_o ),
+    .oup_ready_i ( oup_ready_i )
   );
 
 endmodule

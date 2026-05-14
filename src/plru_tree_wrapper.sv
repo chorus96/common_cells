@@ -22,7 +22,10 @@ input  logic               clk_i,
   plru_tree #(
     .ENTRIES ( ENTRIES )
   ) i_plru_tree (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .used_i ( used_i ),
+    .plru_o ( plru_o )
   );
 
 endmodule

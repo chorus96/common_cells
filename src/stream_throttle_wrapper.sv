@@ -12,39 +12,34 @@
 // AMD Vivado IP packager wrapper for `stream_throttle` from `stream_throttle.sv`.
 module stream_throttle_wrapper #(
 parameter int unsigned MaxNumPending = 1,
-
-    parameter int unsigned CntWidth = cf_math_pkg::idx_width(MaxNumPending),
-
-    parameter type credit_t = logic [CntWidth-1:0]
+  parameter int unsigned CntWidth = cf_math_pkg::idx_width(MaxNumPending),
+  parameter int unsigned credit_t_WIDTH = 1
 ) (
 input  logic clk_i,
-
-    input  logic rst_ni,
-
-
-    input  logic    req_valid_i,
-
-    output logic    req_valid_o,
-
-    input  logic    req_ready_i,
-
-    output logic    req_ready_o,
-
-
-    input  logic    rsp_valid_i,
-
-    input  logic    rsp_ready_i,
-
-
-    input  credit_t credit_i
+  input  logic rst_ni,
+  input  logic    req_valid_i,
+  output logic    req_valid_o,
+  input  logic    req_ready_i,
+  output logic    req_ready_o,
+  input  logic    rsp_valid_i,
+  input  logic    rsp_ready_i,
+  input  logic [credit_t_WIDTH-1:0] credit_i
 );
 
   stream_throttle #(
     .MaxNumPending ( MaxNumPending ),
     .CntWidth ( CntWidth ),
-    .credit_t ( credit_t )
+    .credit_t ( logic [credit_t_WIDTH-1:0] )
   ) i_stream_throttle (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .req_valid_i ( req_valid_i ),
+    .req_valid_o ( req_valid_o ),
+    .req_ready_i ( req_ready_i ),
+    .req_ready_o ( req_ready_o ),
+    .rsp_valid_i ( rsp_valid_i ),
+    .rsp_ready_i ( rsp_ready_i ),
+    .credit_i ( credit_i )
   );
 
 endmodule

@@ -12,41 +12,38 @@
 // AMD Vivado IP packager wrapper for `passthrough_stream_fifo` from `passthrough_stream_fifo.sv`.
 module passthrough_stream_fifo_wrapper #(
 parameter int unsigned Depth       = 32'd8,
-
-    parameter bit          PrintInfo   = 1'b0,
-
-    parameter bit          SameCycleRW = 1'b1,
-
-    parameter type         type_t      = logic
+  parameter bit          PrintInfo   = 1'b0,
+  parameter bit          SameCycleRW = 1'b1,
+  parameter int unsigned type_t_WIDTH = 1
 ) (
 input  logic                 clk_i,
-
-    input  logic                 rst_ni,
-
-    input  logic                 flush_i,
-
-    input  logic                 testmode_i,
-
-    input  type_t                data_i,
-
-    input  logic                 valid_i,
-
-    output logic                 ready_o,
-
-    output type_t                data_o,
-
-    output logic                 valid_o,
-
-    input  logic                 ready_i
+  input  logic                 rst_ni,
+  input  logic                 flush_i,
+  input  logic                 testmode_i,
+  input  logic [type_t_WIDTH-1:0]                data_i,
+  input  logic                 valid_i,
+  output logic                 ready_o,
+  output logic [type_t_WIDTH-1:0]                data_o,
+  output logic                 valid_o,
+  input  logic                 ready_i
 );
 
   passthrough_stream_fifo #(
     .Depth ( Depth ),
     .PrintInfo ( PrintInfo ),
     .SameCycleRW ( SameCycleRW ),
-    .type_t ( type_t )
+    .type_t ( logic [type_t_WIDTH-1:0] )
   ) i_passthrough_stream_fifo (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .flush_i ( flush_i ),
+    .testmode_i ( testmode_i ),
+    .data_i ( data_i ),
+    .valid_i ( valid_i ),
+    .ready_o ( ready_o ),
+    .data_o ( data_o ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i )
   );
 
 endmodule
