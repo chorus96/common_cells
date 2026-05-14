@@ -12,72 +12,30 @@
 // AMD Vivado IP packager wrapper for `stream_xbar` from `stream_xbar.sv`.
 module stream_xbar_wrapper #(
 parameter int unsigned NumInp      = 32'd0,
-
   parameter int unsigned NumOut      = 32'd0,
-
   parameter int unsigned DataWidth   = 32'd1,
-
-  parameter type         payload_t   = logic [DataWidth-1:0],
-
+  parameter int unsigned payload_t_WIDTH = 1,
   parameter bit          OutSpillReg = 1'b0,
-
   parameter int unsigned ExtPrio     = 1'b0,
-
-
   parameter int unsigned AxiVldRdy   = 1'b1,
-
-
-
   parameter int unsigned LockIn      = 1'b1,
-
-
-
   parameter payload_t    AxiVldMask  = '1,
-
-
-
   parameter int unsigned SelWidth = (NumOut > 32'd1) ? unsigned'($clog2(NumOut)) : 32'd1,
-
-
-
-  parameter type sel_oup_t = logic[SelWidth-1:0],
-
-
-
+  parameter int unsigned sel_oup_t_WIDTH = 1,
   parameter int unsigned IdxWidth = (NumInp > 32'd1) ? unsigned'($clog2(NumInp)) : 32'd1,
-
-
-
-  parameter type idx_inp_t = logic[IdxWidth-1:0]
+  parameter int unsigned idx_inp_t_WIDTH = 1
 ) (
 input  logic                  clk_i,
-
   input  logic                  rst_ni,
-
-
-
-
   input  logic                  flush_i,
-
-
-  input  idx_inp_t [NumOut-1:0] rr_i,
-
-
-  input  payload_t [NumInp-1:0] data_i,
-
-
-  input  sel_oup_t [NumInp-1:0] sel_i,
-
+  input  logic [idx_inp_t_WIDTH-1:0] [NumOut-1:0] rr_i,
+  input  logic [payload_t_WIDTH-1:0] [NumInp-1:0] data_i,
+  input  logic [sel_oup_t_WIDTH-1:0] [NumInp-1:0] sel_i,
   input  logic     [NumInp-1:0] valid_i,
-
   output logic     [NumInp-1:0] ready_o,
-
-  output payload_t [NumOut-1:0] data_o,
-
-  output idx_inp_t [NumOut-1:0] idx_o,
-
+  output logic [payload_t_WIDTH-1:0] [NumOut-1:0] data_o,
+  output logic [idx_inp_t_WIDTH-1:0] [NumOut-1:0] idx_o,
   output logic     [NumOut-1:0] valid_o,
-
   input  logic     [NumOut-1:0] ready_i
 );
 
@@ -85,16 +43,16 @@ input  logic                  clk_i,
     .NumInp ( NumInp ),
     .NumOut ( NumOut ),
     .DataWidth ( DataWidth ),
-    .payload_t ( payload_t ),
+    .payload_t ( logic [payload_t_WIDTH-1:0] ),
     .OutSpillReg ( OutSpillReg ),
     .ExtPrio ( ExtPrio ),
     .AxiVldRdy ( AxiVldRdy ),
     .LockIn ( LockIn ),
     .AxiVldMask ( AxiVldMask ),
     .SelWidth ( SelWidth ),
-    .sel_oup_t ( sel_oup_t ),
+    .sel_oup_t ( logic [sel_oup_t_WIDTH-1:0] ),
     .IdxWidth ( IdxWidth ),
-    .idx_inp_t ( idx_inp_t )
+    .idx_inp_t ( logic [idx_inp_t_WIDTH-1:0] )
   ) i_stream_xbar (
     .clk_i ( clk_i ),
     .rst_ni ( rst_ni ),

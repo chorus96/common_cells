@@ -12,16 +12,12 @@
 // AMD Vivado IP packager wrapper for `exp_backoff` from `exp_backoff.sv`.
 module exp_backoff_wrapper #(
 parameter int unsigned Seed   = 'hffff,
-
   parameter int unsigned MaxExp = 16
 ) (
 input  logic clk_i,
   input  logic rst_ni,
-
   input  logic set_i,
-
   input  logic clr_i,
-
   output logic is_zero_o
 );
 

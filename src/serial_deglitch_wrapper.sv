@@ -14,10 +14,10 @@ module serial_deglitch_wrapper #(
 parameter int unsigned SIZE = 4
 ) (
 input  logic clk_i,
-    input  logic rst_ni,
-    input  logic en_i,
-    input  logic d_i,
-    output logic q_o
+  input  logic rst_ni,
+  input  logic en_i,
+  input  logic d_i,
+  output logic q_o
 );
 
   serial_deglitch #(

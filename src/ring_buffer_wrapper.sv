@@ -12,42 +12,32 @@
 // AMD Vivado IP packager wrapper for `ring_buffer` from `ring_buffer.sv`.
 module ring_buffer_wrapper #(
 parameter int unsigned Depth = 32,
-    parameter type data_t = logic,
-
-    localparam int unsigned AddrWidth = cf_math_pkg::idx_width(Depth),
-    localparam int unsigned StepWidth = cf_math_pkg::idx_width(Depth+1),
-    localparam type addr_t = logic [AddrWidth-1:0],
-    localparam type step_t = logic [StepWidth-1:0]
+  parameter int unsigned data_t_WIDTH = 1,
+  localparam int unsigned AddrWidth = cf_math_pkg::idx_width(Depth),
+  localparam int unsigned StepWidth = cf_math_pkg::idx_width(Depth+1),
+  localparam type addr_t = logic [AddrWidth-1:0],
+  localparam type step_t = logic [StepWidth-1:0]
 ) (
 input logic clk_i,
-    input logic rst_ni,
-
-
-    input logic wvalid_i,
-    output logic wready_o,
-    input data_t wdata_i,
-
-
-    input logic rvalid_i,
-    output logic rready_o,
-    input addr_t raddr_i,
-    output data_t rdata_o,
-
-
-
-    input logic advance_i,
-    input step_t step_i,
-
-
-    output addr_t wptr_o,
-    output addr_t rptr_o,
-    output logic full_o,
-    output logic empty_o
+  input logic rst_ni,
+  input logic wvalid_i,
+  output logic wready_o,
+  input logic [data_t_WIDTH-1:0] wdata_i,
+  input logic rvalid_i,
+  output logic rready_o,
+  input addr_t raddr_i,
+  output logic [data_t_WIDTH-1:0] rdata_o,
+  input logic advance_i,
+  input step_t step_i,
+  output addr_t wptr_o,
+  output addr_t rptr_o,
+  output logic full_o,
+  output logic empty_o
 );
 
   ring_buffer #(
     .Depth ( Depth ),
-    .data_t ( data_t )
+    .data_t ( logic [data_t_WIDTH-1:0] )
   ) i_ring_buffer (
     .clk_i ( clk_i ),
     .rst_ni ( rst_ni ),

@@ -12,69 +12,38 @@
 // AMD Vivado IP packager wrapper for `mem_to_banks` from `mem_to_banks.sv`.
 module mem_to_banks_wrapper #(
 parameter int unsigned AddrWidth = 32'd0,
-
   parameter int unsigned DataWidth = 32'd0,
-
   parameter int unsigned AtopWidth = 32'd0,
-
   parameter int unsigned NumBanks  = 32'd1,
-
   parameter bit          HideStrb  = 1'b0,
-
   parameter int unsigned MaxTrans  = 32'd1,
-
   parameter int unsigned FifoDepth = 32'd1,
-
-  parameter  type atop_t     = logic [AtopWidth-1:0],
-
+  parameter int unsigned atop_t_WIDTH = 1,
   localparam type addr_t     = logic [AddrWidth-1:0],
-
   localparam type inp_data_t = logic [DataWidth-1:0],
-
   localparam type inp_strb_t = logic [DataWidth/8-1:0],
-
   localparam type oup_data_t = logic [DataWidth/NumBanks-1:0],
-
   localparam type oup_strb_t = logic [DataWidth/NumBanks/8-1:0]
 ) (
 input  logic                      clk_i,
-
   input  logic                      rst_ni,
-
   input  logic                      req_i,
-
   output logic                      gnt_o,
-
   input  addr_t                     addr_i,
-
   input  inp_data_t                 wdata_i,
-
   input  inp_strb_t                 strb_i,
-
-  input  atop_t                     atop_i,
-
+  input  logic [atop_t_WIDTH-1:0]                     atop_i,
   input  logic                      we_i,
-
   output logic                      rvalid_o,
-
   output inp_data_t                 rdata_o,
-
   output logic      [NumBanks-1:0]  bank_req_o,
-
   input  logic      [NumBanks-1:0]  bank_gnt_i,
-
   output addr_t     [NumBanks-1:0]  bank_addr_o,
-
   output oup_data_t [NumBanks-1:0]  bank_wdata_o,
-
   output oup_strb_t [NumBanks-1:0]  bank_strb_o,
-
-  output atop_t     [NumBanks-1:0]  bank_atop_o,
-
+  output logic [atop_t_WIDTH-1:0]     [NumBanks-1:0]  bank_atop_o,
   output logic      [NumBanks-1:0]  bank_we_o,
-
   input  logic      [NumBanks-1:0]  bank_rvalid_i,
-
   input  oup_data_t [NumBanks-1:0]  bank_rdata_i
 );
 
@@ -86,7 +55,7 @@ input  logic                      clk_i,
     .HideStrb ( HideStrb ),
     .MaxTrans ( MaxTrans ),
     .FifoDepth ( FifoDepth ),
-    .atop_t ( atop_t )
+    .atop_t ( logic [atop_t_WIDTH-1:0] )
   ) i_mem_to_banks (
     .clk_i ( clk_i ),
     .rst_ni ( rst_ni ),

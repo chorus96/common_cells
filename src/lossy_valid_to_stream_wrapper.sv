@@ -12,24 +12,21 @@
 // AMD Vivado IP packager wrapper for `lossy_valid_to_stream` from `lossy_valid_to_stream.sv`.
 module lossy_valid_to_stream_wrapper #(
 parameter int unsigned DATA_WIDTH = 32,
-    parameter type T = logic [DATA_WIDTH-1:0]
+  parameter int unsigned T_WIDTH = 1
 ) (
 input  logic clk_i,
-    input  logic rst_ni,
-
-    input  logic valid_i,
-    input  T     data_i,
-
-    output logic valid_o,
-    input  logic ready_i,
-    output T     data_o,
-
-    output busy_o
+  input  logic rst_ni,
+  input  logic valid_i,
+  input  logic [T_WIDTH-1:0]     data_i,
+  output logic valid_o,
+  input  logic ready_i,
+  output logic [T_WIDTH-1:0]     data_o,
+  output busy_o
 );
 
   lossy_valid_to_stream #(
     .DATA_WIDTH ( DATA_WIDTH ),
-    .T ( T )
+    .T ( logic [T_WIDTH-1:0] )
   ) i_lossy_valid_to_stream (
     .clk_i ( clk_i ),
     .rst_ni ( rst_ni ),

@@ -12,10 +12,10 @@
 // AMD Vivado IP packager wrapper for `popcount` from `popcount.sv`.
 module popcount_wrapper #(
 parameter  int unsigned INPUT_WIDTH   = 256,
-    localparam int unsigned PopcountWidth = $clog2(INPUT_WIDTH) + 1
+  localparam int unsigned PopcountWidth = $clog2(INPUT_WIDTH) + 1
 ) (
 input  logic [  INPUT_WIDTH-1:0] data_i,
-    output logic [PopcountWidth-1:0] popcount_o
+  output logic [PopcountWidth-1:0] popcount_o
 );
 
   popcount #(

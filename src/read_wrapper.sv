@@ -12,15 +12,15 @@
 // AMD Vivado IP packager wrapper for `read` from `read.sv`.
 module read_wrapper #(
 parameter int unsigned Width = 1,
-    parameter type T = logic [Width-1:0]
+  parameter int unsigned T_WIDTH = 1
 ) (
-input  T d_i,
-    output T d_o
+input  logic [T_WIDTH-1:0] d_i,
+  output logic [T_WIDTH-1:0] d_o
 );
 
   read #(
     .Width ( Width ),
-    .T ( T )
+    .T ( logic [T_WIDTH-1:0] )
   ) i_read (
     .d_i ( d_i ),
     .d_o ( d_o )

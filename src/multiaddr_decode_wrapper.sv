@@ -12,58 +12,25 @@
 // AMD Vivado IP packager wrapper for `multiaddr_decode` from `multiaddr_decode.sv`.
 module multiaddr_decode_wrapper #(
 parameter int unsigned NoIndices = 32'd0,
-
   parameter int unsigned NoRules   = 32'd0,
-
-  parameter type         addr_t    = logic,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  parameter type         rule_t    = logic
+  parameter int unsigned addr_t_WIDTH = 1,
+  parameter int unsigned rule_t_WIDTH = 1
 ) (
-input  addr_t                 addr_i,
-  input  addr_t                 mask_i,
-
-  input  rule_t [NoRules-1:0]   addr_map_i,
-
+input  logic [addr_t_WIDTH-1:0]                 addr_i,
+  input  logic [addr_t_WIDTH-1:0]                 mask_i,
+  input  logic [rule_t_WIDTH-1:0] [NoRules-1:0]   addr_map_i,
   output logic  [NoIndices-1:0] select_o,
-
-  output addr_t [NoIndices-1:0] addr_o,
-  output addr_t [NoIndices-1:0] mask_o,
-
+  output logic [addr_t_WIDTH-1:0] [NoIndices-1:0] addr_o,
+  output logic [addr_t_WIDTH-1:0] [NoIndices-1:0] mask_o,
   output logic                  dec_valid_o,
-
   output logic                  dec_error_o
 );
 
   multiaddr_decode #(
     .NoIndices ( NoIndices ),
     .NoRules ( NoRules ),
-    .addr_t ( addr_t ),
-    .rule_t ( rule_t )
+    .addr_t ( logic [addr_t_WIDTH-1:0] ),
+    .rule_t ( logic [rule_t_WIDTH-1:0] )
   ) i_multiaddr_decode (
     .addr_i ( addr_i ),
     .mask_i ( mask_i ),

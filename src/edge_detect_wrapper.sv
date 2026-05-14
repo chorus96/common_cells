@@ -12,10 +12,10 @@
 // AMD Vivado IP packager wrapper for `edge_detect` from `edge_detect.sv`.
 module edge_detect_wrapper (
 input  logic clk_i,
-    input  logic rst_ni,
-    input  logic d_i,
-    output logic re_o,
-    output logic fe_o
+  input  logic rst_ni,
+  input  logic d_i,
+  output logic re_o,
+  output logic fe_o
 );
 
   edge_detect i_edge_detect (

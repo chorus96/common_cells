@@ -12,17 +12,11 @@
 // AMD Vivado IP packager wrapper for `lzc` from `lzc.sv`.
 module lzc_wrapper #(
 parameter int unsigned WIDTH = 2,
-
   parameter bit          MODE  = 1'b0,
-
-
-
   parameter int unsigned CNT_WIDTH = cf_math_pkg::idx_width(WIDTH)
 ) (
 input  logic [WIDTH-1:0]     in_i,
-
   output logic [CNT_WIDTH-1:0] cnt_o,
-
   output logic                 empty_o
 );
 

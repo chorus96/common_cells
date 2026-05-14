@@ -14,11 +14,11 @@ module rstgen_bypass_wrapper #(
 parameter int unsigned NumRegs = 4
 ) (
 input  logic clk_i,
-    input  logic rst_ni,
-    input  logic rst_test_mode_ni,
-    input  logic test_mode_i,
-    output logic rst_no,
-    output logic init_no
+  input  logic rst_ni,
+  input  logic rst_test_mode_ni,
+  input  logic test_mode_i,
+  output logic rst_no,
+  output logic init_no
 );
 
   rstgen_bypass #(

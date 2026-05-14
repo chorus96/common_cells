@@ -14,16 +14,14 @@ module clk_mux_glitch_free_wrapper #(
 parameter int unsigned  NUM_INPUTS = 2,
   parameter int unsigned  NUM_SYNC_STAGES = 2,
   parameter bit CLOCK_DURING_RESET = 1'b1,
-
-
   localparam int unsigned SelWidth = $clog2(NUM_INPUTS)
 ) (
 input logic [NUM_INPUTS-1:0] clks_i,
-   input logic                  test_clk_i,
-   input logic                  test_en_i,
-   input logic                  async_rstn_i,
-   input logic [SelWidth-1:0]   async_sel_i,
-   output logic                 clk_o
+  input logic                  test_clk_i,
+  input logic                  test_en_i,
+  input logic                  async_rstn_i,
+  input logic [SelWidth-1:0]   async_sel_i,
+  output logic                 clk_o
 );
 
   clk_mux_glitch_free #(

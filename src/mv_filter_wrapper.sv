@@ -12,14 +12,14 @@
 // AMD Vivado IP packager wrapper for `mv_filter` from `mv_filter.sv`.
 module mv_filter_wrapper #(
 parameter int unsigned WIDTH     = 4,
-    parameter int unsigned THRESHOLD = 10
+  parameter int unsigned THRESHOLD = 10
 ) (
 input  logic clk_i,
-    input  logic rst_ni,
-    input  logic sample_i,
-    input  logic clear_i,
-    input  logic d_i,
-    output logic q_o
+  input  logic rst_ni,
+  input  logic sample_i,
+  input  logic clear_i,
+  input  logic d_i,
+  output logic q_o
 );
 
   mv_filter #(

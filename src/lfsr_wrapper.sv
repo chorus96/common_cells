@@ -14,8 +14,6 @@ module lfsr_wrapper #(
 parameter int unsigned          LfsrWidth     = 64,
   parameter int unsigned          OutWidth      = 8,
   parameter logic [LfsrWidth-1:0] RstVal        = '1,
-
-
   parameter int unsigned          CipherLayers  = 0,
   parameter bit                   CipherReg     = 1'b1
 ) (

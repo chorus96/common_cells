@@ -14,8 +14,6 @@ module cdc_reset_ctrlr_wrapper
   import cdc_reset_ctrlr_pkg::*;
  #(
 parameter int unsigned SYNC_STAGES = 2,
-
-
   parameter logic        CLEAR_ON_ASYNC_RESET = 1'b1
 ) (
 input logic  a_clk_i,
@@ -25,7 +23,6 @@ input logic  a_clk_i,
   input logic a_clear_ack_i,
   output logic a_isolate_o,
   input logic  a_isolate_ack_i,
-
   input logic  b_clk_i,
   input logic  b_rst_ni,
   input logic  b_clear_i,

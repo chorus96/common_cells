@@ -12,60 +12,28 @@
 // AMD Vivado IP packager wrapper for `addr_decode_napot` from `addr_decode_napot.sv`.
 module addr_decode_napot_wrapper #(
 parameter int unsigned NoIndices = 32'd0,
-
   parameter int unsigned NoRules   = 32'd0,
-
-  parameter type         addr_t    = logic,
-
-
-
-
-
-
-
-
-
-
-
-
-  parameter type         rule_t    = logic,
-
-
-
+  parameter int unsigned addr_t_WIDTH = 1,
+  parameter int unsigned rule_t_WIDTH = 1,
   parameter int unsigned IdxWidth  = cf_math_pkg::idx_width(NoIndices),
-
-
-
-  parameter type         idx_t     = logic [IdxWidth-1:0]
+  parameter int unsigned idx_t_WIDTH = 1
 ) (
-input  addr_t               addr_i,
-
-  input  rule_t [NoRules-1:0] addr_map_i,
-
-  output idx_t                idx_o,
-
+input  logic [addr_t_WIDTH-1:0]               addr_i,
+  input  logic [rule_t_WIDTH-1:0] [NoRules-1:0] addr_map_i,
+  output logic [idx_t_WIDTH-1:0]                idx_o,
   output logic                dec_valid_o,
-
   output logic                dec_error_o,
-
-
-
   input  logic                en_default_idx_i,
-
-
-
-
-
-  input  idx_t                default_idx_i
+  input  logic [idx_t_WIDTH-1:0]                default_idx_i
 );
 
   addr_decode_napot #(
     .NoIndices ( NoIndices ),
     .NoRules ( NoRules ),
-    .addr_t ( addr_t ),
-    .rule_t ( rule_t ),
+    .addr_t ( logic [addr_t_WIDTH-1:0] ),
+    .rule_t ( logic [rule_t_WIDTH-1:0] ),
     .IdxWidth ( IdxWidth ),
-    .idx_t ( idx_t )
+    .idx_t ( logic [idx_t_WIDTH-1:0] )
   ) i_addr_decode_napot (
     .addr_i ( addr_i ),
     .addr_map_i ( addr_map_i ),

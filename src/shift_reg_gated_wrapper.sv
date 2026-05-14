@@ -12,20 +12,19 @@
 // AMD Vivado IP packager wrapper for `shift_reg_gated` from `shift_reg_gated.sv`.
 module shift_reg_gated_wrapper #(
 parameter int unsigned Depth = 32'd8,
-  parameter type         dtype = logic
+  parameter int unsigned dtype_WIDTH = 1
 ) (
 input  logic clk_i,
   input  logic rst_ni,
-
   input  logic valid_i,
-  input  dtype data_i,
+  input  logic [dtype_WIDTH-1:0] data_i,
   output logic valid_o,
-  output dtype data_o
+  output logic [dtype_WIDTH-1:0] data_o
 );
 
   shift_reg_gated #(
     .Depth ( Depth ),
-    .dtype ( dtype )
+    .dtype ( logic [dtype_WIDTH-1:0] )
   ) i_shift_reg_gated (
     .clk_i ( clk_i ),
     .rst_ni ( rst_ni ),

@@ -14,13 +14,13 @@ module trip_counter_wrapper #(
 parameter int unsigned WIDTH = 4
 ) (
 input  logic             clk_i,
-    input  logic             rst_ni,
-    input  logic             en_i,
-    input  logic [WIDTH-1:0] delta_i,
-    input  logic [WIDTH-1:0] bound_i,
-    output logic [WIDTH-1:0] q_o,
-    output logic             last_o,
-    output logic             trip_o
+  input  logic             rst_ni,
+  input  logic             en_i,
+  input  logic [WIDTH-1:0] delta_i,
+  input  logic [WIDTH-1:0] bound_i,
+  output logic [WIDTH-1:0] q_o,
+  output logic             last_o,
+  output logic             trip_o
 );
 
   trip_counter #(

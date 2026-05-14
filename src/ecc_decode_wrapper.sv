@@ -14,34 +14,25 @@ module ecc_decode_wrapper
   import ecc_pkg::*;
  #(
 parameter  int unsigned DataWidth   = 64,
-
-  parameter type data_t         = logic [DataWidth-1:0],
-  parameter type parity_t       = logic [get_parity_width(DataWidth)-1:0],
-  parameter type code_word_t    = logic [get_cw_width(DataWidth)-1:0],
-  parameter type encoded_data_t = struct packed {
-                                    logic parity;
-                                    code_word_t code_word;
-                                  }
+  parameter int unsigned data_t_WIDTH = 1,
+  parameter int unsigned parity_t_WIDTH = 1,
+  parameter int unsigned code_word_t_WIDTH = 1,
+  parameter int unsigned encoded_data_t_WIDTH = 1
 ) (
-input  encoded_data_t data_i,
-
-  output data_t         data_o,
-
-  output parity_t       syndrome_o,
-
+input  logic [encoded_data_t_WIDTH-1:0] data_i,
+  output logic [data_t_WIDTH-1:0]         data_o,
+  output logic [parity_t_WIDTH-1:0]       syndrome_o,
   output logic          single_error_o,
-
   output logic          parity_error_o,
-
   output logic          double_error_o
 );
 
   ecc_decode #(
     .DataWidth ( DataWidth ),
-    .data_t ( data_t ),
-    .parity_t ( parity_t ),
-    .code_word_t ( code_word_t ),
-    .encoded_data_t ( encoded_data_t )
+    .data_t ( logic [data_t_WIDTH-1:0] ),
+    .parity_t ( logic [parity_t_WIDTH-1:0] ),
+    .code_word_t ( logic [code_word_t_WIDTH-1:0] ),
+    .encoded_data_t ( logic [encoded_data_t_WIDTH-1:0] )
   ) i_ecc_decode (
     .data_i ( data_i ),
     .data_o ( data_o ),

@@ -16,21 +16,16 @@ parameter int unsigned KHashes     =  32'd3,
   parameter int unsigned HashRounds  =  32'd1,
   parameter int unsigned InpWidth    =  32'd32,
   parameter int unsigned BucketWidth =  32'd4,
-
   parameter cb_filter_pkg::cb_seed_t [KHashes-1:0] Seeds = cb_filter_pkg::EgSeeds
 ) (
 input  logic                 clk_i,
   input  logic                 rst_ni,
-
   input  logic [InpWidth-1:0]  look_data_i,
   output logic                 look_valid_o,
-
   input  logic [InpWidth-1:0]  incr_data_i,
   input  logic                 incr_valid_i,
-
   input  logic [InpWidth-1:0]  decr_data_i,
   input  logic                 decr_valid_i,
-
   input  logic                 filter_clear_i,
   output logic [HashWidth-1:0] filter_usage_o,
   output logic                 filter_full_o,

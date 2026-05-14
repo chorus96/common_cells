@@ -12,11 +12,10 @@
 // AMD Vivado IP packager wrapper for `onehot_to_bin` from `onehot_to_bin.sv`.
 module onehot_to_bin_wrapper #(
 parameter int unsigned ONEHOT_WIDTH = 16,
-
-    parameter int unsigned BIN_WIDTH    = ONEHOT_WIDTH == 1 ? 1 : $clog2(ONEHOT_WIDTH)
+  parameter int unsigned BIN_WIDTH    = ONEHOT_WIDTH == 1 ? 1 : $clog2(ONEHOT_WIDTH)
 ) (
 input  logic [ONEHOT_WIDTH-1:0] onehot,
-    output logic [BIN_WIDTH-1:0]    bin
+  output logic [BIN_WIDTH-1:0]    bin
 );
 
   onehot_to_bin #(

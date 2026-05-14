@@ -14,11 +14,8 @@ module stream_join_wrapper #(
 parameter int unsigned N_INP = 32'd0
 ) (
 input  logic  [N_INP-1:0] inp_valid_i,
-
   output logic  [N_INP-1:0] inp_ready_o,
-
   output logic              oup_valid_o,
-
   input  logic              oup_ready_i
 );
 

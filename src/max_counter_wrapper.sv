@@ -14,18 +14,18 @@ module max_counter_wrapper #(
 parameter int unsigned WIDTH = 4
 ) (
 input  logic             clk_i,
-    input  logic             rst_ni,
-    input  logic             clear_i,
-    input  logic             clear_max_i,
-    input  logic             en_i,
-    input  logic             load_i,
-    input  logic             down_i,
-    input  logic [WIDTH-1:0] delta_i,
-    input  logic [WIDTH-1:0] d_i,
-    output logic [WIDTH-1:0] q_o,
-    output logic [WIDTH-1:0] max_o,
-    output logic             overflow_o,
-    output logic             overflow_max_o
+  input  logic             rst_ni,
+  input  logic             clear_i,
+  input  logic             clear_max_i,
+  input  logic             en_i,
+  input  logic             load_i,
+  input  logic             down_i,
+  input  logic [WIDTH-1:0] delta_i,
+  input  logic [WIDTH-1:0] d_i,
+  output logic [WIDTH-1:0] q_o,
+  output logic [WIDTH-1:0] max_o,
+  output logic             overflow_o,
+  output logic             overflow_max_o
 );
 
   max_counter #(

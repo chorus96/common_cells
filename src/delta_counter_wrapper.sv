@@ -12,18 +12,18 @@
 // AMD Vivado IP packager wrapper for `delta_counter` from `delta_counter.sv`.
 module delta_counter_wrapper #(
 parameter int unsigned WIDTH = 4,
-    parameter bit STICKY_OVERFLOW = 1'b0
+  parameter bit STICKY_OVERFLOW = 1'b0
 ) (
 input  logic             clk_i,
-    input  logic             rst_ni,
-    input  logic             clear_i,
-    input  logic             en_i,
-    input  logic             load_i,
-    input  logic             down_i,
-    input  logic [WIDTH-1:0] delta_i,
-    input  logic [WIDTH-1:0] d_i,
-    output logic [WIDTH-1:0] q_o,
-    output logic             overflow_o
+  input  logic             rst_ni,
+  input  logic             clear_i,
+  input  logic             en_i,
+  input  logic             load_i,
+  input  logic             down_i,
+  input  logic [WIDTH-1:0] delta_i,
+  input  logic [WIDTH-1:0] d_i,
+  output logic [WIDTH-1:0] q_o,
+  output logic             overflow_o
 );
 
   delta_counter #(

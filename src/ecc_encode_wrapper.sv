@@ -14,26 +14,21 @@ module ecc_encode_wrapper
   import ecc_pkg::*;
  #(
 parameter  int unsigned DataWidth   = 64,
-
-  parameter type data_t         = logic [DataWidth-1:0],
-  parameter type parity_t       = logic [get_parity_width(DataWidth)-1:0],
-  parameter type code_word_t    = logic [get_cw_width(DataWidth)-1:0],
-  parameter type encoded_data_t = struct packed {
-                                    logic parity;
-                                    code_word_t code_word;
-                                  }
+  parameter int unsigned data_t_WIDTH = 1,
+  parameter int unsigned parity_t_WIDTH = 1,
+  parameter int unsigned code_word_t_WIDTH = 1,
+  parameter int unsigned encoded_data_t_WIDTH = 1
 ) (
-input  data_t         data_i,
-
-  output encoded_data_t data_o
+input  logic [data_t_WIDTH-1:0]         data_i,
+  output logic [encoded_data_t_WIDTH-1:0] data_o
 );
 
   ecc_encode #(
     .DataWidth ( DataWidth ),
-    .data_t ( data_t ),
-    .parity_t ( parity_t ),
-    .code_word_t ( code_word_t ),
-    .encoded_data_t ( encoded_data_t )
+    .data_t ( logic [data_t_WIDTH-1:0] ),
+    .parity_t ( logic [parity_t_WIDTH-1:0] ),
+    .code_word_t ( logic [code_word_t_WIDTH-1:0] ),
+    .encoded_data_t ( logic [encoded_data_t_WIDTH-1:0] )
   ) i_ecc_encode (
     .data_i ( data_i ),
     .data_o ( data_o )

@@ -12,77 +12,38 @@
 // AMD Vivado IP packager wrapper for `rr_arb_tree` from `rr_arb_tree.sv`.
 module rr_arb_tree_wrapper #(
 parameter int unsigned NumIn      = 64,
-
   parameter int unsigned DataWidth  = 32,
-
-  parameter type         DataType   = logic [DataWidth-1:0],
-
-
-
-
-
-
+  parameter int unsigned DataType_WIDTH = 1,
   parameter bit          ExtPrio    = 1'b0,
-
-
-
-
-
-
   parameter bit          AxiVldRdy  = 1'b0,
-
-
-
-
-
-
   parameter bit          LockIn     = 1'b0,
-
-
-
   parameter bit          FairArb    = 1'b1,
-
-
   parameter int unsigned IdxWidth   = (NumIn > 32'd1) ? unsigned'($clog2(NumIn)) : 32'd1,
-
-
-  parameter type         idx_t      = logic [IdxWidth-1:0]
+  parameter int unsigned idx_t_WIDTH = 1
 ) (
 input  logic                clk_i,
-
   input  logic                rst_ni,
-
   input  logic                flush_i,
-
-  input  idx_t                rr_i,
-
+  input  logic [idx_t_WIDTH-1:0]                rr_i,
   input  logic    [NumIn-1:0] req_i,
-
-
   output logic    [NumIn-1:0] gnt_o,
-
-
-  input  DataType [NumIn-1:0] data_i,
-
+  input  logic [DataType_WIDTH-1:0] [NumIn-1:0] data_i,
   output logic                req_o,
-
   input  logic                gnt_i,
-
-  output DataType             data_o,
-
-  output idx_t                idx_o
+  output logic [DataType_WIDTH-1:0]             data_o,
+  output logic [idx_t_WIDTH-1:0]                idx_o
 );
 
   rr_arb_tree #(
     .NumIn ( NumIn ),
     .DataWidth ( DataWidth ),
-    .DataType ( DataType ),
+    .DataType ( logic [DataType_WIDTH-1:0] ),
     .ExtPrio ( ExtPrio ),
     .AxiVldRdy ( AxiVldRdy ),
     .LockIn ( LockIn ),
     .FairArb ( FairArb ),
     .IdxWidth ( IdxWidth ),
-    .idx_t ( idx_t )
+    .idx_t ( logic [idx_t_WIDTH-1:0] )
   ) i_rr_arb_tree (
     .clk_i ( clk_i ),
     .rst_ni ( rst_ni ),

@@ -12,34 +12,29 @@
 // AMD Vivado IP packager wrapper for `stream_fifo` from `stream_fifo.sv`.
 module stream_fifo_wrapper #(
 parameter bit          FALL_THROUGH = 1'b0,
-
-    parameter int unsigned DATA_WIDTH   = 32,
-
-    parameter int unsigned DEPTH        = 8,
-    parameter type         T            = logic [DATA_WIDTH-1:0],
-
-    parameter int unsigned ADDR_DEPTH  = (DEPTH > 1) ? $clog2(DEPTH) : 1
+  parameter int unsigned DATA_WIDTH   = 32,
+  parameter int unsigned DEPTH        = 8,
+  parameter int unsigned T_WIDTH = 1,
+  parameter int unsigned ADDR_DEPTH  = (DEPTH > 1) ? $clog2(DEPTH) : 1
 ) (
 input  logic                  clk_i,
-    input  logic                  rst_ni,
-    input  logic                  flush_i,
-    input  logic                  testmode_i,
-    output logic [ADDR_DEPTH-1:0] usage_o,
-
-    input  T                      data_i,
-    input  logic                  valid_i,
-    output logic                  ready_o,
-
-    output T                      data_o,
-    output logic                  valid_o,
-    input  logic                  ready_i
+  input  logic                  rst_ni,
+  input  logic                  flush_i,
+  input  logic                  testmode_i,
+  output logic [ADDR_DEPTH-1:0] usage_o,
+  input  logic [T_WIDTH-1:0]                      data_i,
+  input  logic                  valid_i,
+  output logic                  ready_o,
+  output logic [T_WIDTH-1:0]                      data_o,
+  output logic                  valid_o,
+  input  logic                  ready_i
 );
 
   stream_fifo #(
     .FALL_THROUGH ( FALL_THROUGH ),
     .DATA_WIDTH ( DATA_WIDTH ),
     .DEPTH ( DEPTH ),
-    .T ( T ),
+    .T ( logic [T_WIDTH-1:0] ),
     .ADDR_DEPTH ( ADDR_DEPTH )
   ) i_stream_fifo (
     .clk_i ( clk_i ),
