@@ -25,7 +25,11 @@ input logic  clk_i,
     .DIV_VALUE ( DIV_VALUE ),
     .ENABLE_CLOCK_IN_RESET ( ENABLE_CLOCK_IN_RESET )
   ) i_clk_int_div_static (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .en_i ( en_i ),
+    .test_mode_en_i ( test_mode_en_i ),
+    .clk_o ( clk_o )
   );
 
 endmodule

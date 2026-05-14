@@ -14,28 +14,28 @@ module stream_fork_dynamic_wrapper #(
 parameter int unsigned N_OUP = 32'd0
 ) (
 input  logic             clk_i,
-
   input  logic             rst_ni,
-
   input  logic             valid_i,
-
   output logic             ready_o,
-
   input  logic [N_OUP-1:0] sel_i,
-
   input  logic             sel_valid_i,
-
   output logic             sel_ready_o,
-
   output logic [N_OUP-1:0] valid_o,
-
   input  logic [N_OUP-1:0] ready_i
 );
 
   stream_fork_dynamic #(
     .N_OUP ( N_OUP )
   ) i_stream_fork_dynamic (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .valid_i ( valid_i ),
+    .ready_o ( ready_o ),
+    .sel_i ( sel_i ),
+    .sel_valid_i ( sel_valid_i ),
+    .sel_ready_o ( sel_ready_o ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i )
   );
 
 endmodule

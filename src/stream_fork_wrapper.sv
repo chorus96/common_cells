@@ -14,17 +14,22 @@ module stream_fork_wrapper #(
 parameter int unsigned N_OUP = 0
 ) (
 input  logic                clk_i,
-    input  logic                rst_ni,
-    input  logic                valid_i,
-    output logic                ready_o,
-    output logic [N_OUP-1:0]    valid_o,
-    input  logic [N_OUP-1:0]    ready_i
+  input  logic                rst_ni,
+  input  logic                valid_i,
+  output logic                ready_o,
+  output logic [N_OUP-1:0]    valid_o,
+  input  logic [N_OUP-1:0]    ready_i
 );
 
   stream_fork #(
     .N_OUP ( N_OUP )
   ) i_stream_fork (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .valid_i ( valid_i ),
+    .ready_o ( ready_o ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i )
   );
 
 endmodule

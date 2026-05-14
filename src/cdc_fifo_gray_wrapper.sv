@@ -12,33 +12,38 @@
 // AMD Vivado IP packager wrapper for `cdc_fifo_gray` from `cdc_fifo_gray.sv`.
 module cdc_fifo_gray_wrapper #(
 parameter int unsigned WIDTH = 1,
-
-  parameter type T = logic [WIDTH-1:0],
-
+  parameter int unsigned T_WIDTH = 1,
   parameter int LOG_DEPTH = 3,
-
   parameter int SYNC_STAGES = 2
 ) (
 input  logic src_rst_ni,
   input  logic src_clk_i,
-  input  T     src_data_i,
+  input  logic [T_WIDTH-1:0]     src_data_i,
   input  logic src_valid_i,
   output logic src_ready_o,
-
   input  logic dst_rst_ni,
   input  logic dst_clk_i,
-  output T     dst_data_o,
+  output logic [T_WIDTH-1:0]     dst_data_o,
   output logic dst_valid_o,
   input  logic dst_ready_i
 );
 
   cdc_fifo_gray #(
     .WIDTH ( WIDTH ),
-    .T ( T ),
+    .T ( logic [T_WIDTH-1:0] ),
     .LOG_DEPTH ( LOG_DEPTH ),
     .SYNC_STAGES ( SYNC_STAGES )
   ) i_cdc_fifo_gray (
-    .*
+    .src_rst_ni ( src_rst_ni ),
+    .src_clk_i ( src_clk_i ),
+    .src_data_i ( src_data_i ),
+    .src_valid_i ( src_valid_i ),
+    .src_ready_o ( src_ready_o ),
+    .dst_rst_ni ( dst_rst_ni ),
+    .dst_clk_i ( dst_clk_i ),
+    .dst_data_o ( dst_data_o ),
+    .dst_valid_o ( dst_valid_o ),
+    .dst_ready_i ( dst_ready_i )
   );
 
 endmodule

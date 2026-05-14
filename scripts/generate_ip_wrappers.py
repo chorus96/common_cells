@@ -133,8 +133,62 @@ def extract_module_header(text: str, expected_module: str) -> tuple[str, str, st
     return expected_module, preamble, params, ports, param_names
 
 
+def extract_port_names(ports: str) -> list[str]:
+    names: list[str] = []
+    for item in split_top_level_commas(ports):
+        s = remove_leading_attrs(item)
+        if not s:
+            continue
+        tokens = re.findall(r"[A-Za-z_$][\w$]*", s)
+        if not tokens:
+            continue
+        for tok in reversed(tokens):
+            if tok not in {"input", "output", "inout", "ref", "wire", "logic", "reg", "signed", "unsigned", "var"}:
+                names.append(tok)
+                break
+    return names
+
+
+
+
+def transform_params(params: str) -> tuple[str, list[str], dict[str, str]]:
+    """Convert type parameters into WIDTH integer parameters for flat wrapper ports."""
+    if not params:
+        return params, [], {}
+    out_items: list[str] = []
+    type_params: list[str] = []
+    width_map: dict[str, str] = {}
+    for item in split_top_level_commas(params):
+        s = item.strip()
+        core = remove_leading_attrs(s)
+        m = re.match(r"parameter\s+type\s+([A-Za-z_$][\w$]*)\s*=", core)
+        if m:
+            name = m.group(1)
+            width = f"{name}_WIDTH"
+            type_params.append(name)
+            width_map[name] = width
+            out_items.append(f"parameter int unsigned {width} = 1")
+        else:
+            out_items.append(s)
+    return ",\n  ".join(out_items), type_params, width_map
+
+
+def transform_ports(ports: str, width_map: dict[str, str]) -> str:
+    if not ports:
+        return ports
+    transformed: list[str] = []
+    for item in split_top_level_commas(ports):
+        s = item.strip()
+        for tname, wname in width_map.items():
+            s = re.sub(rf"\b{re.escape(tname)}\b", f"logic [{wname}-1:0]", s)
+        transformed.append(s)
+    return ",\n  ".join(transformed)
+
+
 def render_wrapper(module: str, preamble: str, params: str, ports: str, param_names: list[str], source_name: str) -> str:
     wrapper = f"{module}_wrapper"
+    params, type_params, width_map = transform_params(params)
+    ports = transform_ports(ports, width_map)
     lines = [
         "// Copyright 2018 ETH Zurich and University of Bologna.",
         "// Copyright and related rights are licensed under the Solderpad Hardware",
@@ -168,15 +222,25 @@ def render_wrapper(module: str, preamble: str, params: str, ports: str, param_na
     lines.extend(line.rstrip() for line in ports.splitlines())
     lines.append(");")
     lines.append("")
+    port_names = extract_port_names(ports)
+    inst_params = [n for n in param_names if n not in type_params]
     if param_names:
         lines.append(f"  {module} #(")
-        for idx, name in enumerate(param_names):
-            comma = "," if idx + 1 < len(param_names) else ""
-            lines.append(f"    .{name} ( {name} ){comma}")
+        conn_items: list[str] = []
+        for name in param_names:
+            if name in width_map:
+                conn_items.append(f"    .{name} ( logic [{width_map[name]}-1:0] )")
+            else:
+                conn_items.append(f"    .{name} ( {name} )")
+        for idx, item in enumerate(conn_items):
+            comma = "," if idx + 1 < len(conn_items) else ""
+            lines.append(item + comma)
         lines.append(f"  ) i_{module} (")
     else:
         lines.append(f"  {module} i_{module} (")
-    lines.append("    .*")
+    for idx, name in enumerate(port_names):
+        comma = "," if idx + 1 < len(port_names) else ""
+        lines.append(f"    .{name} ( {name} ){comma}")
     lines.append("  );")
     lines.append("")
     lines.append("endmodule")

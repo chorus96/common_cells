@@ -12,19 +12,22 @@
 // AMD Vivado IP packager wrapper for `sync` from `sync.sv`.
 module sync_wrapper #(
 parameter int unsigned STAGES = 2,
-    parameter bit ResetValue = 1'b0
+  parameter bit ResetValue = 1'b0
 ) (
 input  logic clk_i,
-    input  logic rst_ni,
-    input  logic serial_i,
-    output logic serial_o
+  input  logic rst_ni,
+  input  logic serial_i,
+  output logic serial_o
 );
 
   sync #(
     .STAGES ( STAGES ),
     .ResetValue ( ResetValue )
   ) i_sync (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .serial_i ( serial_i ),
+    .serial_o ( serial_o )
   );
 
 endmodule

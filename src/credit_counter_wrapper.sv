@@ -12,21 +12,16 @@
 // AMD Vivado IP packager wrapper for `credit_counter` from `credit_counter.sv`.
 module credit_counter_wrapper #(
 parameter int unsigned NumCredits      = 0,
-
   parameter bit          InitCreditEmpty = 1'b0,
-
   parameter int unsigned InitNumCredits  = InitCreditEmpty ? '0 : NumCredits,
-  parameter type         credit_cnt_t    = logic [$clog2(NumCredits):0]
+  parameter int unsigned credit_cnt_t_WIDTH = 1
 ) (
 input  logic clk_i,
   input  logic rst_ni,
-
-  output credit_cnt_t credit_o,
-
+  output logic [credit_cnt_t_WIDTH-1:0] credit_o,
   input  logic credit_give_i,
   input  logic credit_take_i,
   input  logic credit_init_i,
-
   output logic credit_left_o,
   output logic credit_crit_o,
   output logic credit_full_o
@@ -36,9 +31,17 @@ input  logic clk_i,
     .NumCredits ( NumCredits ),
     .InitCreditEmpty ( InitCreditEmpty ),
     .InitNumCredits ( InitNumCredits ),
-    .credit_cnt_t ( credit_cnt_t )
+    .credit_cnt_t ( logic [credit_cnt_t_WIDTH-1:0] )
   ) i_credit_counter (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .credit_o ( credit_o ),
+    .credit_give_i ( credit_give_i ),
+    .credit_take_i ( credit_take_i ),
+    .credit_init_i ( credit_init_i ),
+    .credit_left_o ( credit_left_o ),
+    .credit_crit_o ( credit_crit_o ),
+    .credit_full_o ( credit_full_o )
   );
 
 endmodule

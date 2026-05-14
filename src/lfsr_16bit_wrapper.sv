@@ -12,20 +12,24 @@
 // AMD Vivado IP packager wrapper for `lfsr_16bit` from `lfsr_16bit.sv`.
 module lfsr_16bit_wrapper #(
 parameter logic [15:0] SEED  = 8'b0,
-    parameter int unsigned WIDTH = 16
+  parameter int unsigned WIDTH = 16
 ) (
 input  logic                      clk_i,
-    input  logic                      rst_ni,
-    input  logic                      en_i,
-    output logic [WIDTH-1:0]          refill_way_oh,
-    output logic [$clog2(WIDTH)-1:0]  refill_way_bin
+  input  logic                      rst_ni,
+  input  logic                      en_i,
+  output logic [WIDTH-1:0]          refill_way_oh,
+  output logic [$clog2(WIDTH)-1:0]  refill_way_bin
 );
 
   lfsr_16bit #(
     .SEED ( SEED ),
     .WIDTH ( WIDTH )
   ) i_lfsr_16bit (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .en_i ( en_i ),
+    .refill_way_oh ( refill_way_oh ),
+    .refill_way_bin ( refill_way_bin )
   );
 
 endmodule

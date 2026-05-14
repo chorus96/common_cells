@@ -14,13 +14,14 @@ module binary_to_gray_wrapper #(
 parameter int N = -1
 ) (
 input  logic [N-1:0] A,
-    output logic [N-1:0] Z
+  output logic [N-1:0] Z
 );
 
   binary_to_gray #(
     .N ( N )
   ) i_binary_to_gray (
-    .*
+    .A ( A ),
+    .Z ( Z )
   );
 
 endmodule

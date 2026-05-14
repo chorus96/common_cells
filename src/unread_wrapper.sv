@@ -15,7 +15,7 @@ input logic d_i
 );
 
   unread i_unread (
-    .*
+    .d_i ( d_i )
   );
 
 endmodule

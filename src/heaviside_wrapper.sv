@@ -12,19 +12,19 @@
 // AMD Vivado IP packager wrapper for `heaviside` from `heaviside.sv`.
 module heaviside_wrapper #(
 parameter int unsigned Width = 32,
-
-    localparam int unsigned IdxWidth = cf_math_pkg::idx_width(Width),
-    localparam type idx_t = logic [IdxWidth-1:0],
-    localparam type mask_t = logic [Width-1:0]
+  localparam int unsigned IdxWidth = cf_math_pkg::idx_width(Width),
+  localparam type idx_t = logic [IdxWidth-1:0],
+  localparam type mask_t = logic [Width-1:0]
 ) (
 input idx_t x_i,
-    output mask_t mask_o
+  output mask_t mask_o
 );
 
   heaviside #(
     .Width ( Width )
   ) i_heaviside (
-    .*
+    .x_i ( x_i ),
+    .mask_o ( mask_o )
   );
 
 endmodule
