@@ -65,7 +65,14 @@ input  addr_t                 addr_i,
     .addr_t ( addr_t ),
     .rule_t ( rule_t )
   ) i_multiaddr_decode (
-    .*
+    .addr_i ( addr_i ),
+    .mask_i ( mask_i ),
+    .addr_map_i ( addr_map_i ),
+    .select_o ( select_o ),
+    .addr_o ( addr_o ),
+    .mask_o ( mask_o ),
+    .dec_valid_o ( dec_valid_o ),
+    .dec_error_o ( dec_error_o )
   );
 
 endmodule

@@ -46,7 +46,19 @@ input  logic                 clk_i,
     .BucketWidth ( BucketWidth ),
     .Seeds ( Seeds )
   ) i_cb_filter (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .look_data_i ( look_data_i ),
+    .look_valid_o ( look_valid_o ),
+    .incr_data_i ( incr_data_i ),
+    .incr_valid_i ( incr_valid_i ),
+    .decr_data_i ( decr_data_i ),
+    .decr_valid_i ( decr_valid_i ),
+    .filter_clear_i ( filter_clear_i ),
+    .filter_usage_o ( filter_usage_o ),
+    .filter_full_o ( filter_full_o ),
+    .filter_empty_o ( filter_empty_o ),
+    .filter_error_o ( filter_error_o )
   );
 
 endmodule

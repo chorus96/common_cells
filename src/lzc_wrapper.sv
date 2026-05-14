@@ -31,7 +31,9 @@ input  logic [WIDTH-1:0]     in_i,
     .MODE ( MODE ),
     .CNT_WIDTH ( CNT_WIDTH )
   ) i_lzc (
-    .*
+    .in_i ( in_i ),
+    .cnt_o ( cnt_o ),
+    .empty_o ( empty_o )
   );
 
 endmodule

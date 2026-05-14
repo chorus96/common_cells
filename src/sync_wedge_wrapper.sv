@@ -25,7 +25,13 @@ input  logic clk_i,
   sync_wedge #(
     .STAGES ( STAGES )
   ) i_sync_wedge (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .en_i ( en_i ),
+    .serial_i ( serial_i ),
+    .r_edge_o ( r_edge_o ),
+    .f_edge_o ( f_edge_o ),
+    .serial_o ( serial_o )
   );
 
 endmodule

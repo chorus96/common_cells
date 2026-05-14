@@ -32,7 +32,13 @@ input  DATA_T [N_INP-1:0]     inp_data_i,
     .N_INP ( N_INP ),
     .SEL_WIDTH ( SEL_WIDTH )
   ) i_stream_mux (
-    .*
+    .inp_data_i ( inp_data_i ),
+    .inp_valid_i ( inp_valid_i ),
+    .inp_ready_o ( inp_ready_o ),
+    .inp_sel_i ( inp_sel_i ),
+    .oup_data_o ( oup_data_o ),
+    .oup_valid_o ( oup_valid_o ),
+    .oup_ready_i ( oup_ready_i )
   );
 
 endmodule

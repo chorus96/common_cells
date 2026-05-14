@@ -21,7 +21,11 @@ input  logic valid_i,
 );
 
   stream_filter i_stream_filter (
-    .*
+    .valid_i ( valid_i ),
+    .ready_o ( ready_o ),
+    .drop_i ( drop_i ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i )
   );
 
 endmodule

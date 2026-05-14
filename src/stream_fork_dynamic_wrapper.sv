@@ -35,7 +35,15 @@ input  logic             clk_i,
   stream_fork_dynamic #(
     .N_OUP ( N_OUP )
   ) i_stream_fork_dynamic (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .valid_i ( valid_i ),
+    .ready_o ( ready_o ),
+    .sel_i ( sel_i ),
+    .sel_valid_i ( sel_valid_i ),
+    .sel_ready_o ( sel_ready_o ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i )
   );
 
 endmodule

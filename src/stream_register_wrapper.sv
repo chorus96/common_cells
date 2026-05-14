@@ -30,7 +30,16 @@ input  logic    clk_i,
   stream_register #(
     .T ( T )
   ) i_stream_register (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .clr_i ( clr_i ),
+    .testmode_i ( testmode_i ),
+    .valid_i ( valid_i ),
+    .ready_o ( ready_o ),
+    .data_i ( data_i ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i ),
+    .data_o ( data_o )
   );
 
 endmodule

@@ -44,7 +44,15 @@ input  logic clk_i,
     .CntWidth ( CntWidth ),
     .credit_t ( credit_t )
   ) i_stream_throttle (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .req_valid_i ( req_valid_i ),
+    .req_valid_o ( req_valid_o ),
+    .req_ready_i ( req_ready_i ),
+    .req_ready_o ( req_ready_o ),
+    .rsp_valid_i ( rsp_valid_i ),
+    .rsp_ready_i ( rsp_ready_i ),
+    .credit_i ( credit_i )
   );
 
 endmodule

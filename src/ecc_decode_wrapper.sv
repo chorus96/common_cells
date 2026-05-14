@@ -43,7 +43,12 @@ input  encoded_data_t data_i,
     .code_word_t ( code_word_t ),
     .encoded_data_t ( encoded_data_t )
   ) i_ecc_decode (
-    .*
+    .data_i ( data_i ),
+    .data_o ( data_o ),
+    .syndrome_o ( syndrome_o ),
+    .single_error_o ( single_error_o ),
+    .parity_error_o ( parity_error_o ),
+    .double_error_o ( double_error_o )
   );
 
 endmodule

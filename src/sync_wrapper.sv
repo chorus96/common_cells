@@ -24,7 +24,10 @@ input  logic clk_i,
     .STAGES ( STAGES ),
     .ResetValue ( ResetValue )
   ) i_sync (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .serial_i ( serial_i ),
+    .serial_o ( serial_o )
   );
 
 endmodule

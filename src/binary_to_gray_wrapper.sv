@@ -20,7 +20,8 @@ input  logic [N-1:0] A,
   binary_to_gray #(
     .N ( N )
   ) i_binary_to_gray (
-    .*
+    .A ( A ),
+    .Z ( Z )
   );
 
 endmodule

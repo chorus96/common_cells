@@ -20,7 +20,12 @@ input  logic clk_tx_i,
 );
 
   edge_propagator i_edge_propagator (
-    .*
+    .clk_tx_i ( clk_tx_i ),
+    .rstn_tx_i ( rstn_tx_i ),
+    .edge_i ( edge_i ),
+    .clk_rx_i ( clk_rx_i ),
+    .rstn_rx_i ( rstn_rx_i ),
+    .edge_o ( edge_o )
   );
 
 endmodule

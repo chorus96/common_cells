@@ -49,7 +49,21 @@ input logic clk_i,
     .Depth ( Depth ),
     .data_t ( data_t )
   ) i_ring_buffer (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .wvalid_i ( wvalid_i ),
+    .wready_o ( wready_o ),
+    .wdata_i ( wdata_i ),
+    .rvalid_i ( rvalid_i ),
+    .rready_o ( rready_o ),
+    .raddr_i ( raddr_i ),
+    .rdata_o ( rdata_o ),
+    .advance_i ( advance_i ),
+    .step_i ( step_i ),
+    .wptr_o ( wptr_o ),
+    .rptr_o ( rptr_o ),
+    .full_o ( full_o ),
+    .empty_o ( empty_o )
   );
 
 endmodule

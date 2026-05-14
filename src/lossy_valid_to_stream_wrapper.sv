@@ -31,7 +31,14 @@ input  logic clk_i,
     .DATA_WIDTH ( DATA_WIDTH ),
     .T ( T )
   ) i_lossy_valid_to_stream (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .valid_i ( valid_i ),
+    .data_i ( data_i ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i ),
+    .data_o ( data_o ),
+    .busy_o ( busy_o )
   );
 
 endmodule

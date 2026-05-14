@@ -88,7 +88,26 @@ input  logic                      clk_i,
     .FifoDepth ( FifoDepth ),
     .atop_t ( atop_t )
   ) i_mem_to_banks (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .req_i ( req_i ),
+    .gnt_o ( gnt_o ),
+    .addr_i ( addr_i ),
+    .wdata_i ( wdata_i ),
+    .strb_i ( strb_i ),
+    .atop_i ( atop_i ),
+    .we_i ( we_i ),
+    .rvalid_o ( rvalid_o ),
+    .rdata_o ( rdata_o ),
+    .bank_req_o ( bank_req_o ),
+    .bank_gnt_i ( bank_gnt_i ),
+    .bank_addr_o ( bank_addr_o ),
+    .bank_wdata_o ( bank_wdata_o ),
+    .bank_strb_o ( bank_strb_o ),
+    .bank_atop_o ( bank_atop_o ),
+    .bank_we_o ( bank_we_o ),
+    .bank_rvalid_i ( bank_rvalid_i ),
+    .bank_rdata_i ( bank_rdata_i )
   );
 
 endmodule

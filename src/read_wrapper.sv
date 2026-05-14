@@ -22,7 +22,8 @@ input  T d_i,
     .Width ( Width ),
     .T ( T )
   ) i_read (
-    .*
+    .d_i ( d_i ),
+    .d_o ( d_o )
   );
 
 endmodule

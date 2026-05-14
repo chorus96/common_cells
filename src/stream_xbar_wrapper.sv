@@ -96,7 +96,18 @@ input  logic                  clk_i,
     .IdxWidth ( IdxWidth ),
     .idx_inp_t ( idx_inp_t )
   ) i_stream_xbar (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .flush_i ( flush_i ),
+    .rr_i ( rr_i ),
+    .data_i ( data_i ),
+    .sel_i ( sel_i ),
+    .valid_i ( valid_i ),
+    .ready_o ( ready_o ),
+    .data_o ( data_o ),
+    .idx_o ( idx_o ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i )
   );
 
 endmodule

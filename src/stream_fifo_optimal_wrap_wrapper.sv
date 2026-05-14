@@ -40,7 +40,17 @@ input  logic                 clk_i,
     .PrintInfo ( PrintInfo ),
     .AddrDepth ( AddrDepth )
   ) i_stream_fifo_optimal_wrap (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .flush_i ( flush_i ),
+    .testmode_i ( testmode_i ),
+    .usage_o ( usage_o ),
+    .data_i ( data_i ),
+    .valid_i ( valid_i ),
+    .ready_o ( ready_o ),
+    .data_o ( data_o ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i )
   );
 
 endmodule

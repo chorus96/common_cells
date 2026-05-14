@@ -25,7 +25,9 @@ input idx_t lsb_i,
   boxcar #(
     .Width ( Width )
   ) i_boxcar (
-    .*
+    .lsb_i ( lsb_i ),
+    .msb_i ( msb_i ),
+    .mask_o ( mask_o )
   );
 
 endmodule

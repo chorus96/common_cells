@@ -53,7 +53,25 @@ input  logic    clk_i,
     .NUM_CMP_PORTS ( NUM_CMP_PORTS ),
     .data_t ( data_t )
   ) i_id_queue (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .inp_id_i ( inp_id_i ),
+    .inp_data_i ( inp_data_i ),
+    .inp_req_i ( inp_req_i ),
+    .inp_gnt_o ( inp_gnt_o ),
+    .exists_data_i ( exists_data_i ),
+    .exists_mask_i ( exists_mask_i ),
+    .exists_req_i ( exists_req_i ),
+    .exists_o ( exists_o ),
+    .exists_gnt_o ( exists_gnt_o ),
+    .oup_id_i ( oup_id_i ),
+    .oup_pop_i ( oup_pop_i ),
+    .oup_req_i ( oup_req_i ),
+    .oup_data_o ( oup_data_o ),
+    .oup_data_valid_o ( oup_data_valid_o ),
+    .oup_gnt_o ( oup_gnt_o ),
+    .full_o ( full_o ),
+    .empty_o ( empty_o )
   );
 
 endmodule

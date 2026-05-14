@@ -32,7 +32,10 @@ input  logic                 clk_i,
     .CipherLayers ( CipherLayers ),
     .CipherReg ( CipherReg )
   ) i_lfsr (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .en_i ( en_i ),
+    .out_o ( out_o )
   );
 
 endmodule

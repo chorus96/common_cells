@@ -26,7 +26,14 @@ input  logic             clk_i,
   trip_counter #(
     .WIDTH ( WIDTH )
   ) i_trip_counter (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .en_i ( en_i ),
+    .delta_i ( delta_i ),
+    .bound_i ( bound_i ),
+    .q_o ( q_o ),
+    .last_o ( last_o ),
+    .trip_o ( trip_o )
   );
 
 endmodule

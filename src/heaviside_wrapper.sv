@@ -24,7 +24,8 @@ input idx_t x_i,
   heaviside #(
     .Width ( Width )
   ) i_heaviside (
-    .*
+    .x_i ( x_i ),
+    .mask_o ( mask_o )
   );
 
 endmodule

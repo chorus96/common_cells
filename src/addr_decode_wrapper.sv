@@ -73,7 +73,13 @@ input  addr_t               addr_i,
     .IdxWidth ( IdxWidth ),
     .idx_t ( idx_t )
   ) i_addr_decode (
-    .*
+    .addr_i ( addr_i ),
+    .addr_map_i ( addr_map_i ),
+    .idx_o ( idx_o ),
+    .dec_valid_o ( dec_valid_o ),
+    .dec_error_o ( dec_error_o ),
+    .en_default_idx_i ( en_default_idx_i ),
+    .default_idx_i ( default_idx_i )
   );
 
 endmodule

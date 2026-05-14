@@ -26,7 +26,12 @@ input  logic clk_i,
     .WIDTH ( WIDTH ),
     .THRESHOLD ( THRESHOLD )
   ) i_mv_filter (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .sample_i ( sample_i ),
+    .clear_i ( clear_i ),
+    .d_i ( d_i ),
+    .q_o ( q_o )
   );
 
 endmodule

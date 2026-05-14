@@ -84,7 +84,17 @@ input  logic                clk_i,
     .IdxWidth ( IdxWidth ),
     .idx_t ( idx_t )
   ) i_rr_arb_tree (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .flush_i ( flush_i ),
+    .rr_i ( rr_i ),
+    .req_i ( req_i ),
+    .gnt_o ( gnt_o ),
+    .data_i ( data_i ),
+    .req_o ( req_o ),
+    .gnt_i ( gnt_i ),
+    .data_o ( data_o ),
+    .idx_o ( idx_o )
   );
 
 endmodule

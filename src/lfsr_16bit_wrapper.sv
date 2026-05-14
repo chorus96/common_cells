@@ -25,7 +25,11 @@ input  logic                      clk_i,
     .SEED ( SEED ),
     .WIDTH ( WIDTH )
   ) i_lfsr_16bit (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .en_i ( en_i ),
+    .refill_way_oh ( refill_way_oh ),
+    .refill_way_bin ( refill_way_bin )
   );
 
 endmodule

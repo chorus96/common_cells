@@ -53,7 +53,19 @@ input  logic      clk_i,
     .mem_resp_t ( mem_resp_t ),
     .BufDepth ( BufDepth )
   ) i_stream_to_mem (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .req_i ( req_i ),
+    .req_valid_i ( req_valid_i ),
+    .req_ready_o ( req_ready_o ),
+    .resp_o ( resp_o ),
+    .resp_valid_o ( resp_valid_o ),
+    .resp_ready_i ( resp_ready_i ),
+    .mem_req_o ( mem_req_o ),
+    .mem_req_valid_o ( mem_req_valid_o ),
+    .mem_req_ready_i ( mem_req_ready_i ),
+    .mem_resp_i ( mem_resp_i ),
+    .mem_resp_valid_i ( mem_resp_valid_i )
   );
 
 endmodule
