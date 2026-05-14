@@ -12,36 +12,42 @@
 // AMD Vivado IP packager wrapper for `fifo_v3` from `fifo_v3.sv`.
 module fifo_v3_wrapper #(
 parameter bit          FALL_THROUGH = 1'b0,
-    parameter int unsigned DATA_WIDTH   = 32,
-    parameter int unsigned DEPTH        = 8,
-    parameter type dtype                = logic [DATA_WIDTH-1:0],
-
-    parameter int unsigned ADDR_DEPTH   = (DEPTH > 1) ? $clog2(DEPTH) : 1
+  parameter int unsigned DATA_WIDTH   = 32,
+  parameter int unsigned DEPTH        = 8,
+  parameter int unsigned dtype_WIDTH = 1,
+  parameter int unsigned ADDR_DEPTH   = (DEPTH > 1) ? $clog2(DEPTH) : 1
 ) (
 input  logic  clk_i,
-    input  logic  rst_ni,
-    input  logic  flush_i,
-    input  logic  testmode_i,
-
-    output logic  full_o,
-    output logic  empty_o,
-    output logic  [ADDR_DEPTH-1:0] usage_o,
-
-    input  dtype  data_i,
-    input  logic  push_i,
-
-    output dtype  data_o,
-    input  logic  pop_i
+  input  logic  rst_ni,
+  input  logic  flush_i,
+  input  logic  testmode_i,
+  output logic  full_o,
+  output logic  empty_o,
+  output logic  [ADDR_DEPTH-1:0] usage_o,
+  input  logic [dtype_WIDTH-1:0]  data_i,
+  input  logic  push_i,
+  output logic [dtype_WIDTH-1:0]  data_o,
+  input  logic  pop_i
 );
 
   fifo_v3 #(
     .FALL_THROUGH ( FALL_THROUGH ),
     .DATA_WIDTH ( DATA_WIDTH ),
     .DEPTH ( DEPTH ),
-    .dtype ( dtype ),
+    .dtype ( logic [dtype_WIDTH-1:0] ),
     .ADDR_DEPTH ( ADDR_DEPTH )
   ) i_fifo_v3 (
-    .*
+    .clk_i ( clk_i ),
+    .rst_ni ( rst_ni ),
+    .flush_i ( flush_i ),
+    .testmode_i ( testmode_i ),
+    .full_o ( full_o ),
+    .empty_o ( empty_o ),
+    .usage_o ( usage_o ),
+    .data_i ( data_i ),
+    .push_i ( push_i ),
+    .data_o ( data_o ),
+    .pop_i ( pop_i )
   );
 
 endmodule

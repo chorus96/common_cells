@@ -12,14 +12,18 @@
 // AMD Vivado IP packager wrapper for `edge_propagator_rx` from `edge_propagator_rx.sv`.
 module edge_propagator_rx_wrapper (
 input  logic clk_i,
-    input  logic rstn_i,
-    input  logic valid_i,
-    output logic ack_o,
-    output logic valid_o
+  input  logic rstn_i,
+  input  logic valid_i,
+  output logic ack_o,
+  output logic valid_o
 );
 
   edge_propagator_rx i_edge_propagator_rx (
-    .*
+    .clk_i ( clk_i ),
+    .rstn_i ( rstn_i ),
+    .valid_i ( valid_i ),
+    .ack_o ( ack_o ),
+    .valid_o ( valid_o )
   );
 
 endmodule

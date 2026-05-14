@@ -12,16 +12,18 @@
 // AMD Vivado IP packager wrapper for `stream_filter` from `stream_filter.sv`.
 module stream_filter_wrapper (
 input  logic valid_i,
-    output logic ready_o,
-
-    input  logic drop_i,
-
-    output logic valid_o,
-    input  logic ready_i
+  output logic ready_o,
+  input  logic drop_i,
+  output logic valid_o,
+  input  logic ready_i
 );
 
   stream_filter i_stream_filter (
-    .*
+    .valid_i ( valid_i ),
+    .ready_o ( ready_o ),
+    .drop_i ( drop_i ),
+    .valid_o ( valid_o ),
+    .ready_i ( ready_i )
   );
 
 endmodule

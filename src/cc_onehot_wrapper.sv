@@ -20,7 +20,8 @@ input  logic [Width-1:0] d_i,
   cc_onehot #(
     .Width ( Width )
   ) i_cc_onehot (
-    .*
+    .d_i ( d_i ),
+    .is_onehot_o ( is_onehot_o )
   );
 
 endmodule
