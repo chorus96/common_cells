@@ -29,8 +29,7 @@ module delta_counter #(
     if (STICKY_OVERFLOW) begin : gen_sticky_overflow
         logic overflow_d, overflow_q;
 
-        always_ff @(posedge clk_i or negedge rst_ni)
-        begin
+        always_ff @(posedge clk_i or negedge rst_ni) begin
             if(!rst_ni) begin
                 overflow_q <= 1'b0;
             end else begin
